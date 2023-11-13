@@ -22,7 +22,7 @@ class Image {
   void gammaCorrect(float gamma);
 
   // output PPM image.
-  void writePPM(out_of_range);
+  void writePPM(ostream &out);
 
   void readPPM(string filename);
 

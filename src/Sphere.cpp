@@ -2,7 +2,7 @@
 #include "Sphere.h"
 
 Sphere::Sphere(const Vector3 &_center, float _radius, const rgb &_color)
-    : center(_center), radius(_radius), color(_color);
+    : center(_center), radius(_radius), color(_color) {}
 
 bool Sphere::hit(const Ray &r, float tmin, float tmax, float time, HitRecord &record) const {
   // TODO refactor into common method?
@@ -30,7 +30,7 @@ bool Sphere::hit(const Ray &r, float tmin, float tmax, float time, HitRecord &re
     }
 
     // we have a valid hit
-    rec.t = t;
+    record.t = t;
     record.normal = unitVector(r.origin() + t * r.direction() - center);
     record.color = color;
     return true;

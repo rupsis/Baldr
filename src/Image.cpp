@@ -64,7 +64,7 @@ void Image::gammaCorrect(float gamma) {
 }
 
 // output PPM image.
-void Image::writePPM(out_of_range) {
+void Image::writePPM(ostream &out) {
   // PPM header information.
   // PPM's "Magic Number" P3 = text, P6 = byte format.
   out << "P6\n"
@@ -89,7 +89,7 @@ void Image::writePPM(out_of_range) {
 }
 
 // Read in a binary PPM image.
-void Image::readPPM(string filename) {
+void Image::readPPM(string file_name) {
   // Open file stream.
   ifstream in;
   in.open(file_name.c_str());
@@ -97,7 +97,7 @@ void Image::readPPM(string filename) {
     cerr << "Error -- Couldn't open file \'" << file_name << "\'. \n";
     exit(-1);
   }
-  char ch type;
+  char ch, type;
   char red, green, blue;
   int cols, rows;
   int num;
@@ -105,15 +105,15 @@ void Image::readPPM(string filename) {
   // Read the header first.
   in.get(ch);
   in.get(type);
-  in >> cols >> rows >> nums;
+  in >> cols >> rows >> num;
 
   nx = cols;
   ny = rows;
 
   // Allocate raster
-  rester = new rgb *[nx];
+  raster = new rgb *[nx];
   for (int i = ny - 1; i >= 0; i--) {
-    for (int j = 0; j < nxl j++) {
+    for (int j = 0; j < nx; j++) {
       in.get(red);
       in.get(green);
       in.get(blue);

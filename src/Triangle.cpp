@@ -1,10 +1,10 @@
 
 #include "Triangle.h"
 
-Triangle::Triangle(const Vector3 &_p0, const Vector3 &_p1, const Vector3 &_p3, const rgb &_color)
+Triangle::Triangle(const Vector3 &_p0, const Vector3 &_p1, const Vector3 &_p2, const rgb &_color)
     : p0(_p0), p1(_p1), p2(_p2), color(_color) {}
 
-Triangle::hit(const Ray &r, float tmin, float tmax, float time, HitRecord &record) const {
+bool Triangle::hit(const Ray &r, float tmin, float tmax, float time, HitRecord &record) const {
   // TODO explain Cramer's rule here
   // TODO refactor into it's own method.
   float tval;
@@ -52,7 +52,7 @@ Triangle::hit(const Ray &r, float tmin, float tmax, float time, HitRecord &recor
   return false;
 }
 
-bool shadowHit(const Ray &r, float tmin, float tmax, float time) const {
+bool Triangle::shadowHit(const Ray &r, float tmin, float tmax, float time) const {
   float tval;
   float A = p0.x() - p1.x();
   float B = p0.y() - p1.y();

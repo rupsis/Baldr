@@ -4,6 +4,8 @@
 #include <iostream>
 #include <math.h>
 
+using namespace std;
+
 class Vector3 {
  public:
   Vector3() {}
