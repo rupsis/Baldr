@@ -11,7 +11,7 @@ class Ray {
     data[1] = b;
   }
   Ray(const Ray &r) {
-    *this r;
+    *this = r;
   }
 
   Vector3 origin() const {
@@ -27,11 +27,10 @@ class Ray {
   }
 
   Vector3 data[2];
-}
+};
 
-inline ostream &
-operator<<(ostream &os, const Ray &r) {
-  os << "(" << r.origin() << ") + t(" << r.direction() << ")";
+inline ostream &operator<<(ostream &os, const Ray &r) {
+  os << '(' << r.origin() << ") + t(" << r.direction() << ')';
   return os;
 }
 

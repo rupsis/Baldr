@@ -1,7 +1,9 @@
 #ifndef _RGB_H_
 #define _RGB_H_ 1
 
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
 
 class rgb {
  public:
@@ -30,7 +32,10 @@ class rgb {
   rgb &operator*=(float right_op);
   rgb &operator/=(float right_op);
 
-  rgb operator+() const {return *this};
+  rgb operator+() const {
+    return *this;
+  }
+
   rgb operator-() const {
     return rgb(-_r, -_g, -_b);
   }
@@ -49,7 +54,7 @@ class rgb {
 
   friend ostream &operator<<(ostream &out, const rgb &the_rgb);
   friend rgb operator*(const rgb &c, float f);
-  friend rgb operator*(float f, const rgb &c, );
+  friend rgb operator*(float f, const rgb &c);
   friend rgb operator/(const rgb &c, float f);
   friend rgb operator*(const rgb &c1, const rgb &c2);
   friend rgb operator/(const rgb &c1, const rgb &c2);
@@ -65,34 +70,34 @@ inline rgb::rgb(float red, float green, float blue) : _r(red), _g(green), _b(blu
 
 /* *= */
 inline rgb &rgb::operator*=(const rgb &right_op) {
-  *this = *this * right op;
+  *this = *this * right_op;
   return *this;
 }
 
 inline rgb &rgb::operator*=(float right_op) {
-  *this = *this * right op;
+  *this = *this * right_op;
   return *this;
 }
 
 /* /= */
 inline rgb &rgb::operator/=(const rgb &right_op) {
-  *this = *this / right op;
+  *this = *this / right_op;
   return *this;
 }
 
 inline rgb &rgb::operator/=(float right_op) {
-  *this = *this / right op;
+  *this = *this / right_op;
   return *this;
 }
 
 /* += */
 inline rgb &rgb::operator+=(const rgb &right_op) {
-  *this = *this + right op;
+  *this = *this + right_op;
   return *this;
 }
 
 /* = */
-inline rgb &rgb::operator+=(const rgb &right_op) {
+inline rgb &rgb::operator=(const rgb &right_op) {
   _r = right_op._r;
   _g = right_op._g;
   _b = right_op._b;
@@ -118,7 +123,7 @@ inline void rgb::clamp() {
 // Print R G B output, used in PPM format
 inline ostream &operator<<(ostream &out, const rgb &the_rgb) {
   out << the_rgb._r << ' ' << the_rgb._g << ' ' << the_rgb._b << ' ';
-  return out
+  return out;
 }
 
 /* operator* */

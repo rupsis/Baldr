@@ -1,14 +1,16 @@
 #ifndef _VECTOR3_H_
 #define _VECTOR3_H_ 1
 
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 
 class Vector3 {
  public:
   Vector3() {}
   Vector3(float e0, float e1, float e2);
-  Vector3(const Vector3 &v){ *this = v};
+  Vector3(const Vector3 &v) {
+    *this = v;
+  };
 
   float x() const {
     return e[0];
@@ -21,11 +23,13 @@ class Vector3 {
   }
 
   const Vector3 &operator+() const;
+
   Vector3 operator-() const;
+
   float operator[](int i) const {
     return e[i];
   }
-  float &operator[](int i) const {
+  float &operator[](int i) {
     return e[i];
   }
 
@@ -54,11 +58,11 @@ class Vector3 {
   int indexOfMaxComponent() const;
   int indexOfMaxAbsComponent() const;
 
-  friend bool operator==(const Vector3 &v1, const Vector &v2);
-  friend bool operator!=(const Vector3 &v1, const Vector &v2);
+  friend bool operator==(const Vector3 &v1, const Vector3 &v2);
+  friend bool operator!=(const Vector3 &v1, const Vector3 &v2);
 
-  friend istream &operator>>(istream &is, Vector &t);
-  friend istream &operator<<(istream &os, const Vector &t);
+  friend istream &operator>>(istream &is, Vector3 &t);
+  friend ostream &operator<<(ostream &os, const Vector3 &t);
 
   friend Vector3 operator+(const Vector3 &v1, const Vector3 &v2);
   friend Vector3 operator-(const Vector3 &v1, const Vector3 &v2);
@@ -76,11 +80,11 @@ class Vector3 {
   friend Vector3 minVector(const Vector3 &v1, const Vector3 &v2);
   friend Vector3 maxVector(const Vector3 &v1, const Vector3 &v2);
   friend Vector3 cross(const Vector3 &v1, const Vector3 &v2);
-  friend Vector3 dot(const Vector3 &v1, const Vector3 &v2);
-  friend Vector3 tripleProduct(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3);
+  friend float dot(const Vector3 &v1, const Vector3 &v2);
+  friend float tripleProduct(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3);
 
   float e[3];
-}
+};
 
 inline Vector3::Vector3(float e0, float e1, float e2) {
   e[0] = e0;
@@ -92,7 +96,7 @@ inline const Vector3 &Vector3::operator+() const {
   return *this;
 }
 
-inline Vector3 &Vector3::operator-() const {
+inline Vector3 Vector3::operator-() const {
   return Vector3(-e[0], -e[1], -e[2]);
 }
 
@@ -122,7 +126,7 @@ inline float Vector3::minAbsComponent() const {
   return lowest;
 }
 
-inline int Vector3::indexOfMinComponent const {
+inline int Vector3::indexOfMinComponent() const {
   int index = 0;
   float lowest = e[0];
 
@@ -137,7 +141,7 @@ inline int Vector3::indexOfMinComponent const {
   return index;
 }
 
-inline int Vector3::indexOfMinAbsComponent const {
+inline int Vector3::indexOfMinAbsComponent() const {
   int index = 0;
   float lowest = fabs(e[0]);
 
@@ -170,13 +174,13 @@ inline float Vector3::maxAbsComponent() const {
   return largest;
 }
 
-inline int Vector3::indexOfMaxComponent const {
+inline int Vector3::indexOfMaxComponent() const {
   int index = 0;
   float highest = e[0];
 
   if (e[1] > highest) {
-    temp = e[1];
-    highest = 1;
+    highest = e[1];
+    index = 1;
   }
 
   if (e[2] > highest)
@@ -185,7 +189,7 @@ inline int Vector3::indexOfMaxComponent const {
   return index;
 }
 
-inline int Vector3::indexOfMaxAbsComponent const {
+inline int Vector3::indexOfMaxAbsComponent() const {
   int index = 0;
   float highest = fabs(e[0]);
 
@@ -200,7 +204,7 @@ inline int Vector3::indexOfMaxAbsComponent const {
   return index;
 }
 
-inline bool operator==(const Vector3 &v1, const Vector &v2) {
+inline bool operator==(const Vector3 &v1, const Vector3 &v2) {
   if (v1.e[0] != v2.e[0])
     return false;
   if (v1.e[1] != v2.e[1])
@@ -211,7 +215,7 @@ inline bool operator==(const Vector3 &v1, const Vector &v2) {
   return true;
 }
 
-inline bool operator!=(const Vector3 &v1, const Vector &v2) {
+inline bool operator!=(const Vector3 &v1, const Vector3 &v2) {
   return !(v1 == v2);
 }
 
@@ -224,15 +228,15 @@ inline Vector3 operator-(const Vector3 &v1, const Vector3 &v2) {
 }
 
 inline Vector3 operator/(const Vector3 &vec, float scalar) {
-  return Vector3(v1.e[0] / scalar, v1.e[1] / scalar, v1.e[2] / scalar);
+  return Vector3(vec.e[0] / scalar, vec.e[1] / scalar, vec.e[2] / scalar);
 }
 
 inline Vector3 operator*(const Vector3 &vec, float scalar) {
-  return Vector3(v1.e[0] * scalar, v1.e[1] * scalar, v1.e[2] * scalar);
+  return Vector3(vec.e[0] * scalar, vec.e[1] * scalar, vec.e[2] * scalar);
 }
 
 inline Vector3 operator*(float scalar, const Vector3 &vec) {
-  return Vector3(scalar * v1.e[0], scalar * v1.e[1], scalar * v1.e[2]);
+  return Vector3(scalar * vec.e[0], scalar * vec.e[1], scalar * vec.e[2]);
 }
 
 inline Vector3 &Vector3::operator=(const Vector3 &v2) {
@@ -251,13 +255,13 @@ inline Vector3 &Vector3::operator-=(const Vector3 &v2) {
   return *this;
 }
 
-inline Vector3 &Vector3::operator*=(const Vector3 &v2) {
+inline Vector3 &Vector3::operator*=(float t) {
   *this = *this * t;
   return *this;
 }
 
-inline Vector3 &Vector3::operator/=(const Vector3 &v2) {
-  *this = *this t;
+inline Vector3 &Vector3::operator/=(float t) {
+  *this = *this * t;
   return *this;
 }
 

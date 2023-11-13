@@ -8,3 +8,11 @@ if negative, no intersection. if positive, there are 2 solution (where the ray e
 Barycentric coordinates
 
 Cramer's rule (fastest way to solve 3x3 linear system)
+
+## Sampling
+ - Jittered
+ - Multi-Jittered 
+ - Poisson disk
+ - Monte Carlo
+
+ 

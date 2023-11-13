@@ -5,10 +5,11 @@ istream &operator>>(istream &is, Vector3 &t) {
   is >> temp;
   t.e[0] = temp;
   is >> temp;
-  t.e[1] = temp is >> temp;
-  t.e[2] = temp
+  t.e[1] = temp;
+  is >> temp;
+  t.e[2] = temp;
 
-      return is;
+  return is;
 }
 
 ostream &operator<<(ostream &os, const Vector3 &t) {

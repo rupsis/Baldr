@@ -31,6 +31,6 @@ class Image {
   // Raster with & height
   int nx;
   int ny;
-}
+};
 
 #endif  // _IMAGE_H_

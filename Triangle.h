@@ -17,6 +17,6 @@ class Triangle : public Shape {
   Vector3 p2;
 
   rgb color;
-}
+};
 
 #endif
