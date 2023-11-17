@@ -44,10 +44,10 @@ class Vector3 {
     e[0] = _x;
   }
   void setY(float _y) {
-    e[0] = _y;
+    e[1] = _y;
   }
   void setZ(float _z) {
-    e[0] = _z;
+    e[2] = _z;
   }
 
   float minComponent() const;
@@ -245,6 +245,7 @@ inline Vector3 &Vector3::operator=(const Vector3 &v2) {
   e[0] = v2.e[0];
   e[1] = v2.e[1];
   e[2] = v2.e[2];
+  return *this;
 }
 
 inline Vector3 &Vector3::operator+=(const Vector3 &v2) {

@@ -36,3 +36,9 @@ baldr
 
 # IDES
 *.vscode
+
+# MacOS
+.DS_Store
+
+#PPM Files
+*.ppm

@@ -1,5 +1,5 @@
-CC = g++
-CFLAGS = -Wall -Wextra -std=c++11
+CC = clang++
+CFLAGS = -Wall -Wextra -pedantic -O2 -std=c++11 -g
 SRC_DIR = src
 INC_DIR = include
 BUILD_DIR = build

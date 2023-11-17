@@ -73,7 +73,7 @@ void ONB::initFromWV(const Vector3 &w, const Vector3 &v) {
 
 istream &operator>>(istream &is, ONB &t) {
   Vector3 new_u, new_v, new_w;
-  is >> new_u >> new_v, new_w;
+  is >> new_u >> new_v >> new_w;
   t.initFromUV(new_u, new_v);
 
   return is;
